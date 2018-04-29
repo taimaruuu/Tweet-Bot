@@ -50,17 +50,27 @@ The above command will crawl 100 tweets before closing the stream.
 
 * trump.txt
 ```
-python twitter_crawler.py trump8.txt trump president maga potus
+python twitter_crawler.py tweets/trump8.txt trump president maga potus
 ```
 
 * avengers.txt
 ```
-python twitter_crawler.py avengers.txt infinity war avengers marvel dc iron man spider man batman movies premiere
+python twitter_crawler.py tweets/avengers.txt infinity war avengers marvel dc iron man spider man batman movies premiere
 ```
 
 * shoes.txt
 ```
-python twitter_crawler.py shoes.txt yeezy adidas nike ultra boost air max converse off white jordan
+python twitter_crawler.py tweets/shoes.txt yeezy adidas nike ultra boost air max converse off white jordan
+```
+
+* fortnite.txt
+```
+python twitter_crawler.py tweets/fortnite.txt fornite epicgames new skin season 4
+```
+
+* kanye.txt
+```
+python twitter_crawler.py tweets/kanye.txt kanye yeezy west kanyewest
 ```
 
 ## Built With
@@ -81,3 +91,4 @@ This project is licensed under the BSD 3-Clause License - see the [LICENSE.md](L
 
 * Hat tip to anyone who's code was used
 * Stackoverflow
+* [README template used](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
