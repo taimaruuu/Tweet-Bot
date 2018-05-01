@@ -73,11 +73,6 @@ python twitter_crawler.py tweets/fortnite.txt fornite epicgames new skin season 
 python twitter_crawler.py tweets/kanye.txt kanye yeezy west kanyewest
 ```
 
-* rlang.txt
-```
-python twitter_crawler.py tweets/rlang.txt romeo langford romeolangford
-```
-
 * tech.txt
 ```
 python twitter_crawler.py tweets/tech.txt apple microsoft iphone ipad macbook imac samsung tech technology
