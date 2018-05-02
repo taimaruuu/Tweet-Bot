@@ -78,6 +78,11 @@ python twitter_crawler.py tweets/kanye.txt kanye yeezy west kanyewest
 python twitter_crawler.py tweets/tech.txt apple microsoft iphone ipad macbook imac samsung tech technology
 ```
 
+* nba.txt
+``` 
+python twitter_crawler.py tweets/nba.txt nba nba2k18 nba2kleague 2kleague nbaleague 
+```
+
 ## Built With
 
 * [Twitter Streaming API](https://developer.twitter.com/en/docs) - The API used
