@@ -1,4 +1,4 @@
-# things we need from tweepy library
+# things we need from libraries
 import json
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
@@ -32,14 +32,12 @@ class Listener(StreamListener):
 
         #increment how many tweets have been crawled
         Listener.tweetCount += 1
-        #print Listener.tweetCount
 
         # open file to write to in append mode
         ofile = open(Listener.file2writeto, 'a')
         ofile.write(data)
         ofile.close()
 
-        #print '\n' + data + '\n'
         if Listener.tweetCount < Listener.stopAt:
             return True
         else:
@@ -67,20 +65,20 @@ class Listener(StreamListener):
             # login to the stream
             auth = self.login()
 
-             # opens the stream 
+             # opens the stream and keeps it alive for 60s after receiving no data 
             stream = Stream(auth, Listener(), timeout=60)
-            #print '\n'
-            #print Listener.stopAt
-            #print '\n'
             
             # array to store terms to track in the stream
+            # takes the terms from command line arguments
             terms2track = []
             for x in range(1, len(sys.argv)):
                  terms2track.append(sys.argv[x])
             
+            # apply filter to stream to track only key words
             stream.filter(track=terms2track)
     
 def main():
+    # Initialize Listener object
     crawler = Listener()
     crawler.getTweetsByKeyword(10000000000)
 
