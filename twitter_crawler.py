@@ -44,6 +44,8 @@ class Listener(StreamListener):
             print "max tweets reached"
             return False
 
+    # status 420 indicated stream is being rate limited
+    # we took the decision to cut the stream when this happens
     def on_error(self, status):
         if status == 420:
             print "status 420, disconnecting stream"
