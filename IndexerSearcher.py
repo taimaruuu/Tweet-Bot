@@ -111,7 +111,5 @@ searcher = IndexSearcher(DirectoryReader.open(directory)) #dont really know what
 analyzer = StandardAnalyzer() #dont really know what this is either
 
 # ... and start searching!
-while true:
+while True:
     search(searcher, analyzer) #keepsearching till enter
-
-# ----------------------------------- EOF ----------------------------------- #
