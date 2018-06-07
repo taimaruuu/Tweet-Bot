@@ -1,0 +1,9 @@
+{% extends "main.html" %}
+{% block output %}
+  <div class="center">
+    <div class="center">
+      {% for num in outputs %}
+        <div class="tweet" <b>{{ num.index }}</b>: {{ num.result }}</p></div>
+      {% endfor %}
+    </div>
+{% endblock %}
