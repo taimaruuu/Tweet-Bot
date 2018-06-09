@@ -14,16 +14,12 @@ from org.apache.lucene.analysis.standard import StandardAnalyzer
 from org.apache.lucene.index import IndexWriter, IndexWriterConfig
 # from org.apache.lucene.store import SimpleFSDirectory
 
-#retrieval dependencies
-from org.apache.lucene.search import IndexSearcher
-from org.apache.lucene.index import DirectoryReader
-from org.apache.lucene.queryparser.classic import QueryParser, MultiFieldQueryParser, QueryParserBase
 
 
 # ---------------------------- global constants ----------------------------- #
 baseDirectory = path.dirname(path.abspath(sys.argv[0]))
-textfileDirectory = "/Users/aravbatra/Documents/2017-2018/Spring/CS172/Twitter Search Engine/cs172/flaskTest" + "/input/"
-indexDirectory = "/Users/aravbatra/Documents/2017-2018/Spring/CS172/Twitter Search Engine/cs172/flaskTest"  + "/lucene_index/"
+textfileDirectory = "/Users/aravbatra/Documents/2017-2018/Spring/CS172/twitterSearchEngine" + "/input/"
+indexDirectory = "/Users/aravbatra/Documents/2017-2018/Spring/CS172/twitterSearchEngine"  + "/lucene_index/"
 tokenCount = 128479 # Number of Tokens
 fields = ["tweet", "u_name"]
 loopVar = True
@@ -103,4 +99,3 @@ def index():
     print "Indexing done!\n"
     print "------------------------------------------------------"
     return GLOBALDIRECTORY
-# index()
