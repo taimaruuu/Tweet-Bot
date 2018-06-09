@@ -1,5 +1,6 @@
 #retrieval dependencies
 
+
 from indexer import *
 
 from org.apache.lucene.search import IndexSearcher
@@ -8,10 +9,24 @@ from org.apache.lucene.queryparser.classic import QueryParser, MultiFieldQueryPa
 
 #searcher
 results = []
-def search(searcher, analyzer, directory):
+
+def search_abstract(query):
+    lucene.initVM()
+    GLOBALDIRECTORY = getDirectory()
+
+    # Create a searcher for the above defined RAMDirectory
+    searcher = IndexSearcher(DirectoryReader.open(GLOBALDIRECTORY)) #dont really know what this is either
+
+    # Create a new retrieving analyzer
+    analyzer = StandardAnalyzer() #dont really know what this is either
+
+    return search(searcher, analyzer, GLOBALDIRECTORY, query)
+
+def search(searcher, analyzer, directory, query2):
     print
     print "Empty to quit."
-    command = raw_input("Query: ") #raw_input for query
+    # command = raw_input("Query: ") #raw_input for query
+    command = query2
     if command == '':
         loopVar = False
         return

@@ -2,9 +2,10 @@ import sys, lucene, json
 from os import path, listdir
 
 #othershit dependencies
+from java.io import File
 from org.apache.lucene.document import Document, Field, StringField, TextField
 from org.apache.lucene.util import Version
-from org.apache.lucene.store import RAMDirectory
+from org.apache.lucene.store import RAMDirectory, FSDirectory
 from datetime import datetime
 
 #Index dependencies
@@ -13,16 +14,12 @@ from org.apache.lucene.analysis.standard import StandardAnalyzer
 from org.apache.lucene.index import IndexWriter, IndexWriterConfig
 # from org.apache.lucene.store import SimpleFSDirectory
 
-#retrieval dependencies
-from org.apache.lucene.search import IndexSearcher
-from org.apache.lucene.index import DirectoryReader
-from org.apache.lucene.queryparser.classic import QueryParser, MultiFieldQueryParser, QueryParserBase
 
 
 # ---------------------------- global constants ----------------------------- #
 baseDirectory = path.dirname(path.abspath(sys.argv[0]))
-textfileDirectory = baseDirectory + "/input/"
-indexDirectory = baseDirectory + "/lucene_index/"
+textfileDirectory = "/Users/aravbatra/Documents/2017-2018/Spring/CS172/twitterSearchEngine" + "/input/"
+indexDirectory = "/Users/aravbatra/Documents/2017-2018/Spring/CS172/twitterSearchEngine"  + "/lucene_index/"
 tokenCount = 128479 # Number of Tokens
 fields = ["tweet", "u_name"]
 loopVar = True
@@ -57,8 +54,7 @@ def createDocument_tweet(data):
     jsonText = data['text'] #accesses tweet
     jsonName = data['user']['screen_name'] #accesses username
     jsonLocation = data['coordinates']
-    print "TYPE" + str(type(jsonLocation))
-    print "LOCATION: " + str(jsonLocation)
+
     doc = Document()
     #added fields
     doc.add(TextField("tweet", jsonText, Field.Store.YES))
@@ -69,15 +65,16 @@ def createDocument_tweet(data):
     return doc
 
 def getDirectory():
-    directory = RAMDirectory()
+    #lucene.initVM()
+    plesworkFile = File(indexDirectory).toPath()
+    directory = FSDirectory.open(plesworkFile)
     return directory
 
 def index():
     # Initialize lucene and the JVM
-    lucene.initVM()
+#    lucene.initVM()
     GLOBALDIRECTORY = getDirectory()
-    print type(GLOBALDIRECTORY)
-    print GLOBALDIRECTORY
+
 
 
     #Indexwriter config
@@ -87,15 +84,18 @@ def index():
     writer = IndexWriter(GLOBALDIRECTORY, config)
 
     fileNames = getTxtFile(textfileDirectory) #creates document for each tweet
+    fileNames = getTxtFile(textfileDirectory) #creates document for each tweet
     for file in fileNames:
         data = getData(file)
-        print file
+
         for tweets in data:
-            doc = createDocument_tweet(tweets)
-            writer.addDocument(doc) # add the document to  IndexWriter
+            if 'text' in tweets:
+                doc = createDocument_tweet(tweets)
+                writer.addDocument(doc) # add the document to  IndexWriter
+
+        print file
     print "\nNumber of indexed documents: %d" % writer.numDocs() #number of documents indexed for testing
     writer.close()
     print "Indexing done!\n"
     print "------------------------------------------------------"
     return GLOBALDIRECTORY
-# index()
